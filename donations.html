@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tu Casa AC – Donaciones</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">Tu Casa AC</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse overflow-auto" id="mainNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link " href="index.html">Inicio</a></li>
+  <li class="nav-item"><a class="nav-link" href="about.html">Sobre Nosotros</a></li>
+  <li class="nav-item"><a class="nav-link" href="programs.html">Programas y Actividades</a></li>
+  <li class="nav-item"><a class="nav-link active" href="donations.html">Donaciones</a></li>
+  <li class="nav-item"><a class="nav-link" href="news.html">Noticias y Actualizaciones</a></li>
+  <li class="nav-item"><a class="nav-link" href="transparency.html">Transparencia</a></li>
+  <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+  <li class="nav-item"><a class="nav-link" href="contact.html">Contacto</a></li>
+  <li class="nav-item"><a class="nav-link" href="privacy.html">Aviso de Privacidad</a></li>
+  <li class="nav-item"><a class="nav-link" href="newsletter.html">Boletín Informativo</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container mt-5 pt-5 flex-grow-1">
+    <h1 class="mb-4">Donaciones</h1>
+
+    <!-- 1. Asistente de 3 pasos -->
+    <div id="wizard-steps" class="mb-5">
+      <div class="step d-none" id="step1">
+        <h4>Paso 1: Selecciona tipo de donación</h4>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="donType" id="typePuntual" value="Puntual">
+          <label class="form-check-label" for="typePuntual">Puntual</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="donType" id="typeRecurrente" value="Recurrente">
+          <label class="form-check-label" for="typeRecurrente">Recurrente</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="donType" id="typeEspecie" value="En Especie">
+          <label class="form-check-label" for="typeEspecie">En Especie</label>
+        </div>
+        <button class="btn btn-primary mt-3" id="toStep2">Siguiente</button>
+      </div>
+
+      <div class="step d-none" id="step2">
+        <h4>Paso 2: Detalles de la donación</h4>
+        <!-- Dinámico: monto o especie -->
+        <div id="montoFields">
+          <label for="donAmount">Monto (MXN):</label>
+          <input type="number" id="donAmount" class="form-control mb-3" placeholder="Ej. 500">
+        </div>
+        <div id="especieFields" class="d-none">
+          <label>Artículos (marca los que donas):</label>
+          <div class="form-check"><input class="form-check-input" type="checkbox" id="itemFood"><label class="form-check-label" for="itemFood">Alimentos</label></div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" id="itemClothes"><label class="form-check-label" for="itemClothes">Ropa</label></div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" id="itemSchool"><label class="form-check-label" for="itemSchool">Material escolar</label></div>
+        </div>
+        <label for="donorName">Nombre:</label>
+        <input type="text" id="donorName" class="form-control mb-3">
+        <label for="donorEmail">Email:</label>
+        <input type="email" id="donorEmail" class="form-control mb-3">
+        <button class="btn btn-secondary me-2" id="backTo1">Anterior</button>
+        <button class="btn btn-primary" id="toStep3">Siguiente</button>
+      </div>
+
+      <div class="step d-none" id="step3">
+        <h4>Paso 3: Confirmar y pagar</h4>
+        <div id="summary" class="border p-3 mb-3"></div>
+        <div class="d-flex gap-2">
+          <button class="btn btn-outline-primary" id="payCard">Tarjeta</button>
+          <button class="btn btn-outline-success" id="payPayPal">PayPal</button>
+          <button class="btn btn-outline-info" id="paySpei">SPEI</button>
+        </div>
+        <button class="btn btn-secondary mt-3" id="backTo2">Anterior</button>
+      </div>
+    </div>
+
+    <!-- 2. Donaciones en especie -->
+    <section class="mb-5">
+      <h2>Donación en Especie</h2>
+      <form id="inKindForm" class="row g-3 mb-3">
+        <div class="col-md-6">
+          <label for="itemName" class="form-label">Nombre del artículo</label>
+          <input type="text" id="itemName" class="form-control">
+        </div>
+        <div class="col-md-3">
+          <label for="itemQty" class="form-label">Cantidad</label>
+          <input type="number" id="itemQty" class="form-control">
+        </div>
+        <div class="col-md-12">
+          <label for="itemComments" class="form-label">Comentarios</label>
+          <textarea id="itemComments" class="form-control" rows="2"></textarea>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Enviar donación en especie</button>
+        </div>
+      </form>
+      <p>Artículos solicitados:</p>
+      <ul>
+        <li>Alimentos no perecederos</li>
+        <li>Ropa y calzado</li>
+        <li>Material escolar</li>
+      </ul>
+    </section>
+
+    <!-- 3. FAQ Donaciones -->
+    <section>
+      <h2>Preguntas Frecuentes</h2>
+      <div class="accordion" id="faqDon">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="faqHead1">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+              ¿Cómo deducir mi donación en impuestos?
+            </button>
+          </h2>
+          <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqDon">
+            <div class="accordion-body">
+              Tras tu donación recibirás un comprobante fiscal digital (CFDI) en tu correo.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="faqHead2">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+              ¿Puedo cambiar mi monto recurrente?
+            </button>
+          </h2>
+          <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqDon">
+            <div class="accordion-body">
+              Sí, ingresa a tu perfil y ajusta la cantidad o frecuencia.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+ <footer class="bg-dark text-white text-center py-3 mt-auto">
+    <div class="container">
+      <small>&copy; 2025 Tu Casa AC. Todos los derechos reservados.</small>
+    </div>
+  </footer>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Wizard lógica
+      const steps = ['step1','step2','step3'];
+      let current = 0;
+      const show = i => {
+        document.querySelectorAll('.step').forEach((el,idx) => el.classList.toggle('d-none', idx!==i));
+      };
+      show(0);
+      document.getElementById('toStep2').onclick = () => {
+        const t = document.querySelector('input[name=donType]:checked');
+        if (!t) return alert('Selecciona un tipo');
+        // muetra campos segun tipo
+        document.getElementById('montoFields').classList.toggle('d-none', t.value==='En Especie');
+        document.getElementById('especieFields').classList.toggle('d-none', t.value!=='En Especie');
+        show(1);
+      };
+      document.getElementById('backTo1').onclick = () => show(0);
+      document.getElementById('toStep3').onclick = () => {
+        const name = document.getElementById('donorName').value;
+        const email = document.getElementById('donorEmail').value;
+        if (!name||!email) return alert('Completa tus datos');
+        let html = `<p><strong>Tipo:</strong> ${document.querySelector('input[name=donType]:checked').value}</p>`;
+        if (!document.getElementById('montoFields').classList.contains('d-none')) {
+          html += `<p><strong>Monto:</strong> $${document.getElementById('donAmount').value}</p>`;
+        } else {
+          const items = Array.from(document.querySelectorAll('#especieFields input:checked')).map(i=>i.nextSibling.textContent.trim()).join(', ');
+          html += `<p><strong>Artículos:</strong> ${items}</p>`;
+        }
+        html += `<p><strong>Nombre:</strong> ${name}</p><p><strong>Email:</strong> ${email}</p>`;
+        document.getElementById('summary').innerHTML = html;
+        show(2);
+      };
+      document.getElementById('backTo2').onclick = () => show(1);
+      ['payCard','payPayPal','paySpei'].forEach(id => {
+        document.getElementById(id).onclick = () => alert('Procesando pago vía ' + id.replace('pay',''));
+      });
+
+      // In-kind form
+      document.getElementById('inKindForm').onsubmit = e => {
+        e.preventDefault();
+        alert('Donación en especie registrada. Gracias!');
+        e.target.reset();
+      };
+    });
+  </script>
+</body>
+</html>

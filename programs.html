@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tu Casa AC – Programas y Actividades</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">Tu Casa AC</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse overflow-auto" id="mainNav">
+        <ul class="navbar-nav ms-auto">
+    <li class="nav-item"><a class="nav-link " href="index.html">Inicio</a></li>
+  <li class="nav-item"><a class="nav-link" href="about.html">Sobre Nosotros</a></li>
+  <li class="nav-item"><a class="nav-link active" href="programs.html">Programas y Actividades</a></li>
+  <li class="nav-item"><a class="nav-link" href="donations.html">Donaciones</a></li>
+  <li class="nav-item"><a class="nav-link" href="news.html">Noticias y Actualizaciones</a></li>
+  <li class="nav-item"><a class="nav-link" href="transparency.html">Transparencia</a></li>
+  <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+  <li class="nav-item"><a class="nav-link" href="contact.html">Contacto</a></li>
+  <li class="nav-item"><a class="nav-link" href="privacy.html">Aviso de Privacidad</a></li>
+  <li class="nav-item"><a class="nav-link" href="newsletter.html">Boletín Informativo</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container mt-5 pt-5 flex-grow-1">
+    <h1 class="mb-4">Programas y Actividades</h1>
+
+    <!-- Cuadrícula de tarjetas -->
+    <section class="row row-cols-1 row-cols-md-3 g-4 mb-5">
+      <!-- Programa A -->
+      <div class="col">
+        <div class="card h-100">
+          <img src="img/programaeducativo.jpg" class="card-img-top" alt="Programa A">
+          <div class="card-body">
+            <h5 class="card-title">Programa A</h5>
+            <p class="card-text">Capacitación educativa para niños y niñas.</p>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalA">Ver más</button>
+          </div>
+        </div>
+      </div>
+      <!-- Programa B -->
+      <div class="col">
+        <div class="card h-100">
+          <img src="img/taller.jpg" class="card-img-top" alt="Programa B">
+          <div class="card-body">
+            <h5 class="card-title">Programa B</h5>
+            <p class="card-text">Talleres de arte y creatividad.</p>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalB">Ver más</button>
+          </div>
+        </div>
+      </div>
+      <!-- Programa C -->
+      <div class="col">
+        <div class="card h-100">
+          <img src="img/campamento.jpg" class="card-img-top" alt="Programa C">
+          <div class="card-body">
+            <h5 class="card-title">Programa C</h5>
+            <p class="card-text">Campamento de verano recreativo.</p>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalC">Ver más</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modales de detalle -->
+    <!-- Modal A -->
+    <div class="modal fade" id="modalA" tabindex="-1" aria-labelledby="modalALabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalALabel">Programa A</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <div class="modal-body">
+            <h6>Objetivos</h6>
+            <ul>
+              <li>Fomentar habilidades académicas.</li>
+              <li>Mejorar comprensión lectora.</li>
+              <li>Estimular pensamiento crítico.</li>
+            </ul>
+            <h6>Cronograma</h6>
+            <ul>
+              <li>Semana 1-2: Diagnóstico</li>
+              <li>Semana 3-6: Clases teóricas</li>
+              <li>Semana 7-8: Evaluación final</li>
+            </ul>
+            <h6>Testimonios</h6>
+            <blockquote class="blockquote">
+              "Aprendí más de lo que esperaba." – Alumno A
+            </blockquote>
+            <h6>Galería</h6>
+            <div class="row row-cols-2 g-2">
+              <div class="col"><img src="https://via.placeholder.com/200x150" class="img-fluid rounded" alt=""></div>
+              <div class="col"><img src="https://via.placeholder.com/200x150" class="img-fluid rounded" alt=""></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal B -->
+    <div class="modal fade" id="modalB" tabindex="-1" aria-labelledby="modalBLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalBLabel">Programa B</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <div class="modal-body">
+            <h6>Objetivos</h6>
+            <ul>
+              <li>Desarrollar creatividad artística.</li>
+              <li>Explorar técnicas de pintura y dibujo.</li>
+              <li>Realizar exposiciones finales.</li>
+            </ul>
+            <h6>Cronograma</h6>
+            <ul>
+              <li>Mes 1: Introducción</li>
+              <li>Mes 2: Prácticas guiadas</li>
+              <li>Mes 3: Taller creativo</li>
+            </ul>
+            <h6>Galería</h6>
+            <div class="row row-cols-2 g-2">
+              <div class="col"><img src="https://via.placeholder.com/200x150" class="img-fluid rounded" alt=""></div>
+              <div class="col"><img src="https://via.placeholder.com/200x150" class="img-fluid rounded" alt=""></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal C -->
+    <div class="modal fade" id="modalC" tabindex="-1" aria-labelledby="modalCLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalCLabel">Programa C</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <div class="modal-body">
+            <h6>Objetivos</h6>
+            <ul>
+              <li>Promover actividad física.</li>
+              <li>Fomentar trabajo en equipo.</li>
+              <li>Crear experiencias de convivencia.</li>
+            </ul>
+            <h6>Cronograma</h6>
+            <ul>
+              <li>Semana 1: Juegos de equipo</li>
+              <li>Semana 2: Ejercicios al aire libre</li>
+              <li>Semana 3: Proyecto final</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calendario aleatorio -->
+    <section class="mb-5">
+      <h2>Calendario de Eventos</h2>
+      <div id="calendar" class="border rounded p-3">
+        <!-- Calendario con eventos aleatorios -->
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-dark text-white text-center py-3 mt-auto">
+    <div class="container"><small>&copy; 2025 Tu Casa AC. Todos los derechos reservados.</small></div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const calendar = document.getElementById('calendar');
+      const tipos = ['Taller', 'Campamento', 'Evento'];
+      const diasSemana = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+      // Generar 7 días con eventos random
+      let html = '<div class="row">';
+      for (let i = 1; i <= 7; i++) {
+        const dia = new Date(); dia.setDate(dia.getDate() + i);
+        const tipo = tipos[Math.floor(Math.random() * tipos.length)];
+        html += `<div class="col border p-2 text-center">
+          <strong>${diasSemana[dia.getDay()]} ${dia.getDate()}</strong><br>
+          <small>${tipo}</small>
+        </div>`;
+      }
+      html += '</div>';
+      calendar.innerHTML = html;
+    });
+  </script>

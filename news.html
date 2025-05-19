@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tu Casa AC – Noticias y Actualizaciones</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">Tu Casa AC</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse overflow-auto" id="mainNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link " href="index.html">Inicio</a></li>
+  <li class="nav-item"><a class="nav-link" href="about.html">Sobre Nosotros</a></li>
+  <li class="nav-item"><a class="nav-link" href="programs.html">Programas y Actividades</a></li>
+  <li class="nav-item"><a class="nav-link " href="donations.html">Donaciones</a></li>
+  <li class="nav-item"><a class="nav-link active" href="news.html">Noticias y Actualizaciones</a></li>
+  <li class="nav-item"><a class="nav-link" href="transparency.html">Transparencia</a></li>
+  <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+  <li class="nav-item"><a class="nav-link" href="contact.html">Contacto</a></li>
+  <li class="nav-item"><a class="nav-link" href="privacy.html">Aviso de Privacidad</a></li>
+  <li class="nav-item"><a class="nav-link" href="newsletter.html">Boletín Informativo</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container mt-5 pt-5 flex-grow-1">
+    <h1 class="mb-4">Noticias y Actualizaciones</h1>
+
+    <!-- Buscador y filtro por fecha -->
+    <div class="row g-2 mb-4">
+      <div class="col-md-6">
+        <input id="searchInput" type="text" class="form-control" placeholder="Buscar por palabra clave">
+      </div>
+      <div class="col-md-3">
+        <input id="dateInput" type="date" class="form-control">
+      </div>
+      <div class="col-md-3">
+        <button id="filterBtn" class="btn btn-primary w-100">Filtrar</button>
+      </div>
+    </div>
+
+    <!-- Listado de noticias -->
+    <div id="newsList" class="row g-4"></div>
+
+    <!-- Paginación -->
+    <nav aria-label="Navegación de páginas" class="mt-4">
+      <ul id="pagination" class="pagination justify-content-center"></ul>
+    </nav>
+
+    <!-- Archivo Histórico -->
+    <section class="mt-5">
+      <h2 class="h5">Archivo Histórico</h2>
+      <div id="archive" class="d-flex flex-wrap gap-2"></div>
+    </section>
+  </main>
+
+  <footer class="bg-dark text-white text-center py-3 mt-auto">
+    <div class="container"><small>&copy; 2025 Tu Casa AC. Todos los derechos reservados.</small></div>
+  </footer>
+
+  <!-- Bootstrap JS + lógica dinámica -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const perPage = 20;
+      let currentPage = 1;
+      const data = [];
+      // Generar 60 noticias dummy
+      for (let i=1; i<=60; i++) {
+        const d = new Date(2025, Math.floor(Math.random()*6), Math.floor(Math.random()*28)+1);
+        data.push({
+          title: `Título de noticia ${i}`,
+          date: d,
+          excerpt: `Este es un extracto de la noticia número ${i}.`,
+          img: `http://placehold.co/300x200?text=Noticia+${i}`,
+          url: '#'
+        });
+      }
+
+      const listEl = document.getElementById('newsList'),
+            pagEl  = document.getElementById('pagination'),
+            arcEl  = document.getElementById('archive');
+
+      function fmtDate(d){
+        return d.toLocaleDateString('es-MX',{day:'numeric',month:'long',year:'numeric'});
+      }
+
+      function renderList(items){
+        listEl.innerHTML = '';
+        const start = (currentPage-1)*perPage;
+        items.slice(start, start+perPage).forEach(n => {
+          const col = document.createElement('div');
+          col.className = 'col-md-6';
+          col.innerHTML = `
+            <div class="card h-100">
+              <img src="${n.img}" class="card-img-top" alt="${n.title}">
+              <div class="card-body">
+                <a href="${n.url}" class="h5 card-title">${n.title}</a>
+                <p class="card-text"><small class="text-muted">${fmtDate(n.date)}</small></p>
+                <p class="card-text">${n.excerpt}</p>
+              </div>
+            </div>`;
+          listEl.appendChild(col);
+        });
+      }
+
+      function renderPages(total){
+        pagEl.innerHTML = '';
+        const pages = Math.ceil(total/perPage);
+        for (let i=1; i<=pages; i++){
+          const li = document.createElement('li');
+          li.className = 'page-item' + (i===currentPage?' active':'');
+          li.innerHTML = `<a class="page-link" href="#">${i}</a>`;
+          li.onclick = e => { e.preventDefault(); currentPage = i; applyFilter(); };
+          pagEl.appendChild(li);
+        }
+      }
+
+      function renderArchive(items){
+        const months = [...new Set(items.map(n => n.date.toLocaleDateString('es-MX',{month:'long',year:'numeric'})))];
+        const years  = [...new Set(items.map(n => n.date.getFullYear()))];
+        months.forEach(m => {
+          const btn = document.createElement('button');
+          btn.className='btn btn-outline-secondary btn-sm';
+          btn.textContent = m;
+          btn.onclick = ()=> filterBy('month', m);
+          arcEl.appendChild(btn);
+        });
+        years.forEach(y => {
+          const btn = document.createElement('button');
+          btn.className='btn btn-outline-secondary btn-sm';
+          btn.textContent = y;
+          btn.onclick = ()=> filterBy('year', y);
+          arcEl.appendChild(btn);
+        });
+      }
+
+      function filterBy(type, val){
+        let filtered = data;
+        if (type==='month'){
+          filtered = filtered.filter(n=>n.date.toLocaleDateString('es-MX',{month:'long',year:'numeric'})===val);
+        } else {
+          filtered = filtered.filter(n=>n.date.getFullYear().toString()===val);
+        }
+        currentPage = 1;
+        applyRender(filtered);
+      }
+
+      function applyFilter(){
+        const kw = document.getElementById('searchInput').value.toLowerCase();
+        const dt = document.getElementById('dateInput').value;
+        let filtered = data;
+        if (kw) filtered = filtered.filter(n=>n.title.toLowerCase().includes(kw) || n.excerpt.toLowerCase().includes(kw));
+        if (dt) filtered = filtered.filter(n=>n.date.toISOString().substr(0,10)===dt);
+        currentPage = 1;
+        applyRender(filtered);
+      }
+
+      function applyRender(items){
+        renderList(items);
+        renderPages(items.length);
+      }
+
+      // Events
+      document.getElementById('filterBtn').onclick = applyFilter;
+
+      // Inicial
+      applyRender(data);
+      renderArchive(data);
+    });
+  </script>
+</body>
+</html>
